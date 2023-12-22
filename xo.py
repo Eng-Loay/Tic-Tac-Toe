@@ -163,7 +163,3 @@ if __name__ == "__main__":
 
 
 
-
-# def restart():
-#   root.destroy()
-#   os.startfile("main.py")
