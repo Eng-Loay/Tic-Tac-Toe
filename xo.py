@@ -1,7 +1,3 @@
-import tkinter as tk
-import copy
-from PIL import Image, ImageTk
-
 def check_winner(board, player):
     for i in range(3):
         if all([cell == player for cell in board[i]]):  # Check rows
@@ -82,26 +78,13 @@ def make_move(row, col):
                 result_label.config(text="It's a tie!")
                 game_over = True
 
-# def restart_game():
-#     global board, current_player, game_over
-#     board = [[" " for _ in range(3)] for _ in range(3)]
-#     current_player = 'X'
-#     game_over = False
-#     for i in range(3):
-#         for j in range(3):
-#             buttons[i][j].config(image="", state=tk.NORMAL)
-       
-#     result_label.config(text="")
+
 def initialize_images():
     global img_x, img_o
-    # Load your 'X' and 'O' images here
-    # Example: Replace 'path_to_x_image.png' and 'path_to_o_image.png' with the actual paths of your images
     img_x = tk.PhotoImage(file='totex.png')
-    # img_x=Image.open("totex.png").resize((30,30))
     img_o = tk.PhotoImage(file='odesign.png')
 import tkinter as tk
 import copy
-from PIL import Image, ImageTk
 
 def main():
     global root, img_x, img_o, board, current_player, game_over, buttons, result_label
@@ -130,7 +113,6 @@ def main():
 
     root.mainloop()
 
-# ... (rest of your functions, such as check_winner, minimax, best_move, make_move, and initialize_images) ...
 
 def restart_game():
     global board, current_player, game_over
@@ -138,14 +120,7 @@ def restart_game():
     current_player = 'X'
     game_over = False
 
-    # Choose either Solution 1 or Solution 2:
 
-    # ### Solution 1: Reset Window Size ###
-    # root.geometry("300x400")  # Adjust dimensions as needed
-
-    # ### Solution 2: Destroy and Recreate Window ###
-    # root.destroy()
-    # main()
 
     for i in range(3):
         for j in range(3):
