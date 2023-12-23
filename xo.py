@@ -130,18 +130,9 @@ def main():
                                    highlightbackground='black', highlightcolor='black', highlightthickness=4) 
             buttons[i][j].grid(row=i, column=j)
             border.grid(row=i,column=j)
-
- 
-
-
-            
-    # on = tk.PhotoImage(file="light.png")          
+    
     result_label = tk.Label(root, text="", font=('Arial', 16))
     result_label.grid(row=3, columnspan=3)
-    # toggle_button = tk.Button(root, image=on, bd=0, command=customize)
-    # toggle_button.grid(row=4, column=1,columnspan=2)
-    # if flag:
-    #    result_label.config(bg="#5b78ff") 
     restart_button = tk.Button(root, text="Restart", font=('Arial', 14), command=restart)  # Solution 2
     restart_button.grid(row=4, columnspan=2)
 
@@ -156,20 +147,6 @@ def main():
 
     root.mainloop()
 
-
-# def restart_game():
-#     global board, current_player, game_over
-#     board = [[" " for _ in range(3)] for _ in range(3)]
-#     current_player = 'X'
-#     game_over = False
-
-
-
-#     for i in range(3):
-#         for j in range(3):
-#             buttons[i][j].config(image="", state=tk.NORMAL)
-
-#     result_label.config(text="")
 
 def restart():
     root.destroy()
