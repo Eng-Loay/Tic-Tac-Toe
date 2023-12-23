@@ -1,3 +1,26 @@
+flag = False
+def customize():
+    global button_node, root, buttons,flag,result_label,toggle_button,on,off
+
+    if button_node:
+        root.config(bg="#001d3b")
+        result_label.config(bg="#001d3b",fg="#FFFFFF") 
+        toggle_button.config(image = off,borderwidth = 0)
+        flag=True
+        for i in range(3):
+            for j in range(3):
+                buttons[i][j].config(bg="#001d3b", highlightbackground="#5b78ff", highlightcolor="#5b78ff", fg="white")
+        button_node = False
+    else:
+        flag=False
+        root.config(bg="white")
+        result_label.config(bg="#ffffff",fg="#000000") 
+        toggle_button.config(image = on,borderwidth = 0)
+
+        for i in range(3):
+            for j in range(3):
+                buttons[i][j].config(bg="white", highlightbackground="black", highlightcolor="black", fg="black")
+        button_node = True
 def check_winner(board, player):
     for i in range(3):
         if all([cell == player for cell in board[i]]):  # Check rows
@@ -85,10 +108,10 @@ def initialize_images():
     img_o = tk.PhotoImage(file='odesign.png')
 import tkinter as tk
 import copy
-
+from tkinter import *
 def main():
-    global root, img_x, img_o, board, current_player, game_over, buttons, result_label
-
+    global root, img_x, img_o, board, current_player, game_over, buttons, result_label,button_node,toggle_button,on,off
+   
     root = tk.Tk()
     root.title("Tic Tac Toe")
 
@@ -97,36 +120,56 @@ def main():
     board = [[" " for _ in range(3)] for _ in range(3)]
     current_player = 'X'
     game_over = False
-
     buttons = [[0 for _ in range(3)] for _ in range(3)]
     for i in range(3):
         for j in range(3):
-            buttons[i][j] = tk.Button(root, text=" ", font=('Arial', 20), width=4, height=2,
-                                       command=lambda row=i, col=j: make_move(row, col))
-            buttons[i][j].grid(row=i, column=j)
+            border = LabelFrame(root, bd = 16, bg = "#5b78ff") 
 
+            buttons[i][j] = tk.Button(border, text=" ", font=('Arial', 20), width=4, height=2,
+                                       command=lambda row=i, col=j: make_move(row, col), relief=tk.RAISED, borderwidth=4,
+                                   highlightbackground='black', highlightcolor='black', highlightthickness=4) 
+            buttons[i][j].grid(row=i, column=j)
+            border.grid(row=i,column=j)
+
+ 
+
+
+            
+    # on = tk.PhotoImage(file="light.png")          
     result_label = tk.Label(root, text="", font=('Arial', 16))
     result_label.grid(row=3, columnspan=3)
-
+    # toggle_button = tk.Button(root, image=on, bd=0, command=customize)
+    # toggle_button.grid(row=4, column=1,columnspan=2)
+    # if flag:
+    #    result_label.config(bg="#5b78ff") 
     restart_button = tk.Button(root, text="Restart", font=('Arial', 14), command=restart)  # Solution 2
-    restart_button.grid(row=4, columnspan=3)
+    restart_button.grid(row=4, columnspan=2)
+
+    # Toggle Switch button setup
+    on = tk.PhotoImage(file="light.png")
+    off = tk.PhotoImage(file="dark.png")
+    button_node = True
+
+
+    toggle_button = tk.Button(root, image=on, bd=0, command=customize,borderwidth = 0)
+    toggle_button.grid(row=4, column=1,columnspan=2)
 
     root.mainloop()
 
 
-def restart_game():
-    global board, current_player, game_over
-    board = [[" " for _ in range(3)] for _ in range(3)]
-    current_player = 'X'
-    game_over = False
+# def restart_game():
+#     global board, current_player, game_over
+#     board = [[" " for _ in range(3)] for _ in range(3)]
+#     current_player = 'X'
+#     game_over = False
 
 
 
-    for i in range(3):
-        for j in range(3):
-            buttons[i][j].config(image="", state=tk.NORMAL)
+#     for i in range(3):
+#         for j in range(3):
+#             buttons[i][j].config(image="", state=tk.NORMAL)
 
-    result_label.config(text="")
+#     result_label.config(text="")
 
 def restart():
     root.destroy()
