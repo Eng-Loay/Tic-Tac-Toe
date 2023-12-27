@@ -1,7 +1,6 @@
 flag = False
 def customize():
     global button_node, root, buttons,flag,result_label,toggle_button,on,off
-
     if button_node:
         root.config(bg="#001d3b")
         result_label.config(bg="#001d3b",fg="#FFFFFF") 
@@ -110,8 +109,7 @@ import tkinter as tk
 import copy
 from tkinter import *
 def main():
-    global root, img_x, img_o, board, current_player, game_over, buttons, result_label,button_node,toggle_button,on,off
-   
+    global root, img_x, img_o, board, current_player, game_over, buttons, result_label,button_node,toggle_button,on,off  
     root = tk.Tk()
     root.title("Tic Tac Toe")
 
@@ -133,7 +131,9 @@ def main():
     
     result_label = tk.Label(root, text="", font=('Arial', 16))
     result_label.grid(row=3, columnspan=3)
-    restart_button = tk.Button(root, text="Restart", font=('Arial', 14), command=restart)  # Solution 2
+    
+    
+    restart_button = tk.Button(root, text="Restart", font=('Arial', 14), command=restart)  
     restart_button.grid(row=4, columnspan=2)
 
     # Toggle Switch button setup
